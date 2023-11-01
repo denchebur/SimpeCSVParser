@@ -1,0 +1,14 @@
+D:\work\test\TestApp\CSVParser\bin\Debug\net6.0\CSVParser.deps.json
+D:\work\test\TestApp\CSVParser\bin\Debug\net6.0\CSVParser.runtimeconfig.json
+D:\work\test\TestApp\CSVParser\bin\Debug\net6.0\CSVParser.dll
+D:\work\test\TestApp\CSVParser\bin\Debug\net6.0\CSVParser.pdb
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.csproj.AssemblyReference.cache
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.GeneratedMSBuildEditorConfig.editorconfig
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.AssemblyInfoInputs.cache
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.AssemblyInfo.cs
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.csproj.CoreCompileInputs.cache
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.dll
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\refint\CSVParser.dll
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.pdb
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\CSVParser.genruntimeconfig.cache
+D:\work\test\TestApp\CSVParser\obj\Debug\net6.0\ref\CSVParser.dll
