@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Service.Database;
 
-public class SampleCabDatum // this is model for client, who want to write a query to database
+public class SampleCabDatum 
 {
     public DateTime? TpepPickupDatetime { get; set; }
 

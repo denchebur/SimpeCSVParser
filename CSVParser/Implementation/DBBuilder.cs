@@ -16,7 +16,7 @@ namespace CSVParser.Implementation
             using (SqlConnection dbConnection = new SqlConnection("Data Source=<type your>;Initial Catalog=TestAppDB;Integrated Security=SSPI;"))
             {
                 dbConnection.Open();
-                using (SqlBulkCopy s = new SqlBulkCopy(dbConnection)) // bulk insert into database, as said in task
+                using (SqlBulkCopy s = new SqlBulkCopy(dbConnection)) 
                 {
                     s.DestinationTableName = "SampleCabData";
                     foreach (var column in csvFileData.Columns)
@@ -30,5 +30,3 @@ namespace CSVParser.Implementation
         }
     }
 }
-
-// P.S на самом деле можно было вынести строку подключения в конфигурационный файл, но опять же, время...

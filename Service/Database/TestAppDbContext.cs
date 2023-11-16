@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Service.Database;
 
-public partial class TestAppDbContext : DbContext // I used scaffolding database, because it safe a lot of time
+public partial class TestAppDbContext : DbContext
 {
     public TestAppDbContext()
     {

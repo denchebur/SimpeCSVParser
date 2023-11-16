@@ -63,29 +63,29 @@ namespace CSVParser.Implementation
                         var datecolumn = new DataColumn(column.Value);
                         datecolumn.AllowDBNull = true;
                         
-                        csvData.Columns.Add(datecolumn); //add column names to data table
+                        csvData.Columns.Add(datecolumn); 
                     }
                     
                     
-                    while (!csvReader.EndOfData) // for this part will be better create special BLL (Buisness Logic Layer), but I have only 4 hours (((
+                    while (!csvReader.EndOfData) 
                     {
                         var fieldData = csvReader.ReadFields();
                         
                         var filteredFieldData = new List<string>();
 
-                        var uniqueString = ""; // create value for row wich we will filter
+                        var uniqueString = ""; 
 
                         for(int i = 0; i < fieldData.Length; i++)
                         {
                             var tempDate = new DateTime();
                             if((filteredColFiels.ContainsKey(i) && filteredColFiels[i] == "tpep_pickup_datetime")
-                                || (filteredColFiels.ContainsKey(i) && filteredColFiels[i] == "tpep_dropoff_datetime")) // convert to UTC
+                                || (filteredColFiels.ContainsKey(i) && filteredColFiels[i] == "tpep_dropoff_datetime")) 
                                 TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(fieldData[i]));
                             
-                            if (fieldData[i] == "") // if field have not data, we change this one to null
+                            if (fieldData[i] == "") 
                                 fieldData[i] = null;
 
-                            if (filteredColFiels.ContainsKey(i) && filteredColFiels[i] == "store_and_fwd_flag") // change Y/N to Yes/No
+                            if (filteredColFiels.ContainsKey(i) && filteredColFiels[i] == "store_and_fwd_flag") 
                             {
                                 if (fieldData[i] == "Y")
                                     fieldData[i] = "Yes";
@@ -95,22 +95,22 @@ namespace CSVParser.Implementation
 
                             if(i == pickupDatetimeIndex 
                                 || i == dropoffDatetimeIndex
-                                || i == passengerCountIndex) // generate a row for future check for duplicating
+                                || i == passengerCountIndex) 
                             {
                                 uniqueString += fieldData[i] + ",";
                             }
                             
-                            if (filteredColFiels.ContainsKey(i)) // add only require data
+                            if (filteredColFiels.ContainsKey(i)) 
                                 filteredFieldData.Add(fieldData[i]);
                             
                         }
 
-                        if (!uniqueEntries.Add(uniqueString.Substring(0, uniqueString.Length - 1))) // try to add our row to HashSet, if entry already exist, we write this one to duplicate.csv
+                        if (!uniqueEntries.Add(uniqueString.Substring(0, uniqueString.Length - 1))) 
                         {
                             WriteDuplicates("./duplicates.csv", uniqueString.Substring(0, uniqueString.Length - 1));
                             
                         }
-                        else csvData.Rows.Add(filteredFieldData.ToArray()); // else add data to our data table
+                        else csvData.Rows.Add(filteredFieldData.ToArray()); 
                         
                         
                     }
@@ -125,7 +125,7 @@ namespace CSVParser.Implementation
 
         private void WriteDuplicates(string path, string data)
         {
-            using(StreamWriter writer = new StreamWriter(path, true)) // simple writer for add entry to declared file
+            using(StreamWriter writer = new StreamWriter(path, true)) 
             {
                 writer.WriteLineAsync(data);
             }
@@ -133,5 +133,3 @@ namespace CSVParser.Implementation
     }
 }
 
-// P.S. впервые работал с CSV файлом, не до конца понял как происходит добавление/чтение что бы это красиво оформить, не судите строго,
-// про CSVHelper который можно подключить с нюгета я узнал когда уже все написал, и уже не было времени переделывать =(

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service.Implementation
 {
-    public class DataService : IDataService // in sthis service we send a queries to database using ORM EF Core, because in future, if we will test this program, it should be easier
+    public class DataService : IDataService 
     {
         private TestAppDbContext ctx;
         
@@ -25,20 +25,20 @@ namespace Service.Implementation
             return result;
         }
 
-        public List<SampleCabDatum> GetLongestTripDistances() // get top 100 longest trip distances
+        public List<SampleCabDatum> GetLongestTripDistances() 
         {
-            var result = ctx.SampleCabData.OrderByDescending(x => x.TripDistance).Take(100).ToList(); // не знаю почему, по оно работает в обратную сторону. поэтому по убыванию
+            var result = ctx.SampleCabData.OrderByDescending(x => x.TripDistance).Take(100).ToList(); 
             return result;
         }
 
-        public List<SampleCabDatum> GetLongestTripDuration() // get top 100 longest trip duration
+        public List<SampleCabDatum> GetLongestTripDuration() 
         {
             var data = ctx.SampleCabData.ToList();  
             var result = data.OrderByDescending(x => (x.TpepDropoffDatetime - x.TpepPickupDatetime)).Take(100).ToList(); 
             return result;
         }
 
-        public List<SampleCabDatum> Search(Func<int, bool> func) // custom search by PUlocationId
+        public List<SampleCabDatum> Search(Func<int, bool> func) 
         {
 
             var result = ctx.SampleCabData.Where(x => func.Invoke((int)x.PUlocationId) == true);
@@ -51,19 +51,17 @@ namespace Service.Implementation
             ctx.SaveChangesAsync();
         }
 
-        public void UpdateRange(List<SampleCabDatum> data) // this method for update range of records 
+        public void UpdateRange(List<SampleCabDatum> data) 
         {
             foreach(var v in data)
                 ctx.SampleCabData.Entry(v).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             ctx.SaveChangesAsync();
         }
 
-        public int GetEntriesCount() // get a number of rows
+        public int GetEntriesCount() 
         {
             var result = ctx.SampleCabData.Count();
             return result;
         }
     }
 }
-
-//P.S я не совсем понял что от меня хотят когда надо сделать инсерт обработанных данных, как я понял это типо апдейт(типо мы данные обработали, и обновили базу данных), в любом случае там асихронное сохранение
